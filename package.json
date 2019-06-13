@@ -1,0 +1,19 @@
+{
+  "name": "passport-auth-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cganzon/passport-auth-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cganzon/passport-auth-system/issues"
+  },
+  "homepage": "https://github.com/cganzon/passport-auth-system#readme"
+}
