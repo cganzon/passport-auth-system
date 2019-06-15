@@ -4,6 +4,7 @@
             <h1 class="text-center mb-3">
                 <i class="fas fa-users"></i> Log In
             </h1>
+            <% include ./partials/messages %>
             <form action="/users/login" method="POST">
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -17,7 +18,7 @@
                 <button type="submit" class="btn btn-outline-danger btn-block">Submit</button>
             </form>
             <p class="lead mt-4">
-                No account? <a href="/users/signup">Sign up</a>
+                No account? <a href="/users/signup" style="color: red">Sign up</a>
             </p>
         </div>
     </div>

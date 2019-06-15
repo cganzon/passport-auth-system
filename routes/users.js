@@ -68,6 +68,7 @@ router.post("/signup", (req, res) => {
                             // Adding user to database
                             newUser.save()
                                 .then(user => {
+                                    req.flash("success_msg", "You are now signed up!");
                                     res.redirect("/users/login");
                                 })
                                 .catch(error => console.log(error));

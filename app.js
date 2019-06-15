@@ -1,6 +1,8 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const mongoose = require("mongoose");
+const flash = require("connect-flash");
+const session = require("express-session");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -8,15 +10,32 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// DB connection
-mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/usersDB", { useNewUrlParser: true, useCreateIndex: true })
-  .then(() => console.log("MongoDB Connected!"))
-  .catch(err => console.error(err));
-
 // EJS
 app.use(expressLayouts);
 app.set("view engine", "ejs");
+
+// Express session
+app.use(session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true
+}));
+
+// Connect flash
+app.use(flash());
+
+// Global variables
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
+
+// DB connection
+mongoose
+    .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/usersDB", { useNewUrlParser: true, useCreateIndex: true })
+    .then(() => console.log("MongoDB Connected!"))
+    .catch(err => console.error(err));
 
 // Routes
 app.use("/", require("./routes/index"));
